@@ -10,4 +10,7 @@
 // add headers that you want to pre-compile here
 #include "framework.h"
 
+#include <string>
+#include <cctype>
+
 #endif //PCH_H
