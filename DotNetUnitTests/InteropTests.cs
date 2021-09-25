@@ -94,25 +94,20 @@ public class InteropTests
     }
 
 
+//    [TestMethod]
+    public void Array_PtrInStruct()
+    {
+        AddFromArrayPtrStruct info = new();
+        info.arr = new int[] { 2, 3, 4, 5, 6, 7, 8 };
+        info.len = info.arr.Length;
+
+        var expected = info.arr.Sum();
+        var actual = DLL.Array_PtrInStruct( info );
+
+        Assert.AreEqual( expected, actual );
+    }
+
+
+
 
 }
-
-
-[StructLayout( LayoutKind.Sequential, Pack = 0 )]
-public class AddingStruct
-{
-    public int op1;
-    public float op2;
-    public double sum;
-};
-
-
-[StructLayout( LayoutKind.Sequential, Pack = 0 )]
-public class AddArrayStruct
-{
-    public int len;
-
-    [MarshalAs( UnmanagedType.ByValArray, SizeConst = 32 )]
-    public float[] data;
-};
-

@@ -23,12 +23,6 @@ struct AddingStruct
     double sum;
 };
 
-struct AddArrayStruct
-{
-    int len;
-    float data[32];
-};
-
 SPIKEDECL void Add_InOutStruct( AddingStruct* data )
 {
     data->sum = data->op1 + (int) data->op2;
@@ -52,6 +46,12 @@ SPIKEDECL int String_charPtr( char* msg )
 }
 
 
+struct AddArrayStruct
+{
+    int len;
+    float data[32];
+};
+
 SPIKEDECL double Struct_ArrayIn( AddArrayStruct info )
 {
     double sum = 0;
@@ -71,4 +71,21 @@ SPIKEDECL double Array_Editable( float* array, int len )
         sum += array[i];
     }
     return sum;
+}
+
+struct AddFromArrayPtr
+{
+    int len;
+    int *arr;
+};
+
+SPIKEDECL int Array_PtrInStruct( AddFromArrayPtr info )
+{
+    int sum = 0;
+
+    for (int i = 0; i <info.len ; i++)
+        sum += info.arr[i];
+
+    return sum;
+
 }

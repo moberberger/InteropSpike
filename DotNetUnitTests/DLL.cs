@@ -31,4 +31,40 @@ public static class DLL
     public static extern double Array_Editable( float[] data, int len );
 
 
+    [DllImport( @"CPP_DLL.dll", ExactSpelling = true, SetLastError = true )]
+    public static extern int Array_PtrInStruct( AddFromArrayPtrStruct info );
+
+
 }
+
+
+
+
+[StructLayout( LayoutKind.Sequential, Pack = 0 )]
+public class AddingStruct
+{
+    public int op1;
+    public float op2;
+    public double sum;
+};
+
+
+
+[StructLayout( LayoutKind.Sequential, Pack = 0 )]
+public class AddArrayStruct
+{
+    public int len;
+
+    [MarshalAs( UnmanagedType.ByValArray, SizeConst = 32 )]
+    public float[] data;
+};
+
+
+
+[StructLayout( LayoutKind.Sequential, Pack = 0 )]
+public class AddFromArrayPtrStruct
+{
+    public int len;
+
+    public int[] arr;
+};
